@@ -40,10 +40,10 @@ func sendOpen(w io.Writer, asn uint32, routerID net.IP, holdTime time.Duration) 
 		AFI4    uint16
 		SAFI4   uint16
 
-		MP6Type uint8
-		MP6Len  uint8
-		AFI6    uint16
-		SAFI6   uint16
+		// MP6Type uint8
+		// MP6Len  uint8
+		// AFI6    uint16
+		// SAFI6   uint16
 
 		CapType uint8
 		CapLen  uint8
@@ -59,19 +59,20 @@ func sendOpen(w io.Writer, asn uint32, routerID net.IP, holdTime time.Duration) 
 		HoldTime: uint16(holdTime.Seconds()),
 		// RouterID filled below
 
-		OptsLen: 20,
+		OptsLen: 14,
 		OptType: 2, // Capabilities
-		OptLen:  18,
+		OptLen:  12,
 
 		MP4Type: 1, // BGP Multi-protocol Extensions
 		MP4Len:  4,
 		AFI4:    1, // IPv4
 		SAFI4:   1, // Unicast
 
-		MP6Type: 1, // BGP Multi-protocol Extensions
-		MP6Len:  4,
-		AFI6:    2, // IPv6
-		SAFI6:   1, // Unicast
+		// Disabled temporarily to debug #65
+		// MP6Type: 1, // BGP Multi-protocol Extensions
+		// MP6Len:  4,
+		// AFI6:    2, // IPv6
+		// SAFI6:   1, // Unicast
 
 		CapType: 65, // 4-byte ASN
 		CapLen:  4,
